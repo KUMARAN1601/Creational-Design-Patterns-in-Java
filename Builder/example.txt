@@ -1,0 +1,61 @@
+// Product class
+class Meal {
+    private String mainCourse;
+    private String drink;
+    private String dessert;
+
+    public Meal(String mainCourse, String drink, String dessert) {
+        this.mainCourse = mainCourse;
+        this.drink = drink;
+        this.dessert = dessert;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "mainCourse='" + mainCourse + '\'' +
+                ", drink='" + drink + '\'' +
+                ", dessert='" + dessert + '\'' +
+                '}';
+    }
+}
+
+// Builder class
+class MealBuilder {
+    private String mainCourse;
+    private String drink;
+    private String dessert;
+
+    public MealBuilder setMainCourse(String mainCourse) {
+        this.mainCourse = mainCourse;
+        return this; // Returning the builder itself
+    }
+
+    public MealBuilder setDrink(String drink) {
+        this.drink = drink;
+        return this;
+    }
+
+    public MealBuilder setDessert(String dessert) {
+        this.dessert = dessert;
+        return this;
+    }
+
+    public Meal build() {
+        return new Meal(mainCourse, drink, dessert);
+    }
+}
+
+// Client code
+public class BuilderPatternDemo {
+    public static void main(String[] args) {
+        MealBuilder mealBuilder = new MealBuilder();
+        Meal meal = mealBuilder
+                .setMainCourse("Steak")
+                .setDrink("Red Wine")
+                .setDessert("Cheesecake")
+                .build();
+
+        System.out.println(meal);
+    }
+}
